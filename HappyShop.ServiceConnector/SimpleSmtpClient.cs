@@ -11,7 +11,7 @@ namespace HappyShop.ServiceConnector
 
     public SimpleSmtpClient(string subject, string receipients)
     {
-      _mailMessage = new MailMessage { From = new MailAddress("kiosk@domain.com"), Subject = subject};
+      _mailMessage = new MailMessage { From = new MailAddress((string)Configuration.Static.Merged.SimpleSmtpFromAddress), Subject = subject};
       receipients.Split(';').ToList().ForEach(_mailMessage.To.Add);
     }
 
@@ -30,9 +30,10 @@ namespace HappyShop.ServiceConnector
     {
       _mailMessage.Body = _bodyBuilder.ToString();
 
-      System.Net.NetworkCredential nc = new System.Net.NetworkCredential("user@host.com", "secret");
-      var smtpClient = new SmtpClient { Host = "smtp.gmail.com", EnableSsl = true, Credentials = nc };
+      //System.Net.NetworkCredential nc = new System.Net.NetworkCredential("user@host.com", "secret");
+      //var smtpClient = new SmtpClient { Host = "smtp.gmail.com", EnableSsl = true, Credentials = nc };
 
+      var smtpClient = new SmtpClient { Host = (string)Configuration.Static.Merged.SimpleSmtpServerHost, EnableSsl = true };
       smtpClient.Send(_mailMessage);
     }
   }

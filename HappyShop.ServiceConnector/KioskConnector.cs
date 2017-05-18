@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using HappyShop.Model;
@@ -12,6 +13,7 @@ namespace HappyShop.ServiceConnector
     {
       WebRequest request = WebRequest.Create(url);
       request.Credentials = new NetworkCredential("root", "root");
+      Console.WriteLine("Get({0}) called.", url);
       return request;
     }
 
