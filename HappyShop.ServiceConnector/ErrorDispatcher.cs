@@ -26,11 +26,13 @@ namespace HappyShop.ServiceConnector
 
     public ErrorDispatcher AddRecipients(string recipients)
     {
+      _recipents = recipients;
       return this;
     }
 
     public ErrorDispatcher AddSubject(string subject)
     {
+      _subject = subject;
       return this;
     }
 
@@ -46,6 +48,18 @@ namespace HappyShop.ServiceConnector
       {
         case ErrorDispatchTarget.Console:
           Console.WriteLine(_message);
+          break;
+        case ErrorDispatchTarget.Email:
+          try
+          {
+            new SimpleSmtpClient(_subject, _recipents)
+              .AddBody(_message)
+              .Send();
+          }
+          catch (Exception exception)
+          {
+            Console.WriteLine(exception);
+          }
           break;
         case ErrorDispatchTarget.File:
           File.WriteAllText("langweilig_.txt".AppendTimeStamp(), _message);
