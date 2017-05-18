@@ -1,0 +1,15 @@
+﻿{
+	"ServiceBind": "http://0.0.0.0:9283/",
+	"MySqlHostname": "localhost",
+	"MySqlDatabase": "kiosk",
+  "MySqlUsername": "kiosk",
+  "MySqlPassword": "secret",
+  "MySqlDefaultCommandTimeout": "30",
+  "PriceCalculationExtraCharge": "0.02",
+  "SimpleSmtpServerHost":  "smtp.mail.org",
+  "ServiceConnectorUrl": "http://localhost:9283",
+  "InactivityTimeout": "00:00:30",
+  "ErrorMailingOn": "false",
+  "ExceptionRecipientSemicolonSeparatedList": "kiosk-team@domain.org",
+  "ErrorDispatcherTarget": "file"
+}
